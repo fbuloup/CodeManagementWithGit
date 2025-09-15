@@ -1331,6 +1331,28 @@ $git log --graph --decorate --abbrev-commit --all --pretty=oneline
 
 \end{frame}
 
+\begin{frame}[fragile]
+\begin{alertblock}{Cherry-pick en pratique}
+\justifying
+Une bonne pratique consiste à créer une branche de report.
+La Gestion de conflits/fusions est possibles.
+L'option -x permet d'écrire l'ID du commit initial dans le commit final ("cherry picked from commit commitID").
+\begin{lstlisting}
+$ git switch rBranch # Branch which will receive picks
+# Create and switch to a report branch from rBranch
+$ git switch -c rBranchReport 
+$ git cherry-pick -x commitID1 # Pick oldest commit
+$ git cherry-pick -x commitID2 # Pick next commit
+$ git cherry-pick -x commitID3 # Pick next commit
+$ # etc ... Manage possible conficts etc...
+$ git switch rBranch # Switch to rBranch
+$ git merge rBranchReport # Report rBranchReport
+$ git branch -d rBranchReport # Delete rBranchReport
+\end{lstlisting}
+\end{alertblock}
+
+\end{frame}
+
 \subsection{La remise}
 \begin{frame}[fragile]
 \centering
