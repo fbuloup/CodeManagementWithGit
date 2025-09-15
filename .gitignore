@@ -1,0 +1,10 @@
+*.out
+*.aux
+*.log
+*.nav
+*.snm
+*.gz
+*.toc
+*.vrb
+**/data_*.txt
+**/data.txt
