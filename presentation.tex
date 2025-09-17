@@ -1274,6 +1274,17 @@ Les index présents en entête de la sortie d'un diff sont des identifiants inte
 }
 \end{frame}
 
+\begin{frame}[fragile]
+\begin{alertblock}{Comparaison de fichier entre dépôts distant et local}
+\begin{lstlisting}
+# Changes in path/tofile between origin
+# and local repos in main branches
+# (workspace and stage diffs are ignored)
+$ git diff origin/main:path/tofile main:path/tofile
+\end{lstlisting}
+\end{alertblock}
+\end{frame}
+
 \subsection{Lecture de la sortie d'un pull}
 \begin{frame}
 \center{
