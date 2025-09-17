@@ -1316,9 +1316,18 @@ $git log --graph --decorate --abbrev-commit --all --pretty=oneline
 \subsection{Les alias}
 \begin{frame}[fragile]
 \centering
-\includegraphics[scale=0.55]{images/gitAlias.png}
+\includegraphics[scale=0.35]{images/gitAlias.png}
 
 \textcolor{blue}{\textbf{\underline{\href{https://git-scm.com/book/fr/v2/Les-bases-de-Git-Les-alias-Git}{Documentation Alias sur Git}}}}
+
+\begin{alertblock}{Les alias en pratique}
+\begin{lstlisting}
+# Creating an alias to get  a
+# graph of commits in console
+$ git config --global alias.lg 'log --graph --decorate --abbrev-commit --all --pretty=oneline'
+$ git lg
+\end{lstlisting}
+\end{alertblock}
 
 \end{frame}
 
