@@ -1275,12 +1275,24 @@ Les index présents en entête de la sortie d'un diff sont des identifiants inte
 \end{frame}
 
 \begin{frame}[fragile]
-\begin{alertblock}{Comparaison de fichier entre dépôts distant et local}
+\begin{alertblock}{Comparaison de fichiers entre dépôts distant et local}
 \begin{lstlisting}
+# - Workspace and stage diffs are ignored -
+# Without git fetch, changes between origin and local
+# repos won't be synchronised and diff will be blind.
+# Use git branch -a to list local and "remote local"
+# branches. e.g. : branchName and 
+# remotes/origin/branchName 
+# In order to update "remote local" branches -> 
+$ git fetch
+# Changes between main branches : local branch main 
+# and "remote local" branch remotes/origin/main ->
+$ git diff main origin/main 
 # Changes in path/tofile between origin
-# and local repos in main branches
-# (workspace and stage diffs are ignored)
+# and local repos in main branches ->
 $ git diff origin/main:path/tofile main:path/tofile
+$ ...
+$ git merge origin/main
 \end{lstlisting}
 \end{alertblock}
 \end{frame}
