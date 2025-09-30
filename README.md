@@ -4,3 +4,5 @@ Following the links below, you will find the outline content and projects descri
 
 * [Outline](https://github.com/fbuloup/CodeManagementWithGit/blob/main/presentation.pdf)
 * [Projects](https://github.com/fbuloup/CodeManagementWithGit/blob/main/projets.pdf)
+
+* <a href="https://github.com/fbuloup/CodeManagementWithGit/blob/main/presentation.pdf">Outline</a>
