@@ -178,7 +178,7 @@ captionpos=b
      \end{itemize}
     \centering
         \begin{tabular}{c c}
-            \includegraphics[scale=0.15]{images/github.png} & \includegraphics[scale=0.1]{images/gitlab.png} \\
+            \includegraphics[scale=0.1]{images/github.png} & \includegraphics[scale=0.066]{images/gitlab.png} \\
             \textbf{Github} & \textbf{GitLab} 
         \end{tabular}
         
@@ -187,9 +187,14 @@ captionpos=b
     \begin{block}{Git n'est pas un espace de stockage de fichiers type Dropbox}
         \begin{itemize}
             \item Pas de sauvegarde automatique des fichiers
-            \item Pas de gestion optimale des fichiers volumineux et/ou binaires
+            \item Pas de gestion optimale des fichiers volumineux$^*$ ou binaires$^{**}$
         \end{itemize}
     \end{block}
+\vspace{.125cm}
+
+\centering
+\footnotesize $^{*}$Utilisation d'une extension spécifique\\
+\footnotesize $^{**}$Les fichiers binaires ne sont pas très lisibles (git diff !!!)
 \end{frame}
 
 \begin{frame}
@@ -219,15 +224,20 @@ captionpos=b
 \begin{itemize}
 \item Fichiers de code informatique
 \item Fichiers textes (e.g. .doc)
-\item Fichiers binaires (e.g. images)
-\item Fichiers de données
 \item Documentation de projets
+\item Fichiers binaires (e.g. images, sons) - Volumineux : git LFS$^{*}$
+\item Fichiers de données - Volumineux : git LFS$^{*}$
 \item etc.
 \end{itemize}
 \end{block}
 \vspace{.25cm}
 
 \centering {\huge \textbf{\textcolor{red}{Gestion collaborative de projets}}}
+\vspace{.25cm}
+
+\footnotesize $^{*}$Utilisation éventuelle de l'extension \textcolor{blue}{\textbf{\underline{\href{https://git-lfs.com/}{Git Large File Storage}}}}\\
+Taille max. de 5GB sur Github (AWS Amazon S3)
+
 \end{frame}
 
 \subsection{Petit historique des systèmes de contrôle de versions}
