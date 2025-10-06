@@ -5,4 +5,6 @@ Following the links below, you will find the outline content and projects descri
 * <a id="raw-url" href="https://raw.githubusercontent.com/fbuloup/CodeManagementWithGit/main/presentation.pdf">Outline</a>
 * <a id="raw-url" href="https://raw.githubusercontent.com/fbuloup/CodeManagementWithGit/main/projets.pdf">Projects</a>
 
+[This](https://github.com/fbuloup/Project_CodeManagementWithGit) repository is used for exercises during class.
+
 From [here](https://github.com/fbuloup/Project_CodeManagementWithGit) you will find project code and from [here](https://github.com/fbuloup/CC_CodeManagementWithGit) the assessements. These last two repositories are private.
