@@ -136,10 +136,10 @@ captionpos=b
 
 \subsection{Le compte GitHub \& les projets}
 \begin{frame}
-	\begin{block}{Compte GitHub}
+	\begin{block}{Comptes GitHub}
 		\begin{itemize}
-			\item Login : MasterFHGit
-			\item Password : MasterFHGit2025
+			\item Création de comptes sur GitHub
+			\item Compte du Master : MasterFHGit
 		\end{itemize}	
 	\end{block}
 	\begin{block}{Les projets}
@@ -171,7 +171,7 @@ captionpos=b
 \end{frame}
 
 \begin{frame}
-    \begin{block}{Git n'est pas un serveur}
+    \begin{block}{Git n'est pas un serveur (au sens centralisé)}
     \begin{itemize}
     \item Git n'offre pas de fonctionnalité de gestion de projet complète (e.g. gestion de tâches, de bugs ou wiki)
    \item Github et GitLab sont deux exemples de solutions complètes
@@ -193,7 +193,7 @@ captionpos=b
 \vspace{.125cm}
 
 \centering
-\footnotesize $^{*}$Utilisation d'une extension spécifique\\
+\footnotesize $^{*}$Dans ce cas, on peut utiliser une extension spécifique : git LFS\\
 \footnotesize $^{**}$Les fichiers binaires ne sont pas très lisibles (git diff !!!)
 \end{frame}
 
@@ -207,10 +207,10 @@ captionpos=b
         \end{itemize}
     \end{block}
     \pause
-    \begin{block}{Pourquoi gérer des versions de fichiers ?}
+    \begin{block}{Pourquoi gérer des versions de fichiers, utiliser un VCS ?}
         \begin{itemize}
             \item Pour pouvoir revenir en arrière
-            \item Pour comparer
+            \item Pour comparer des versions de fichiers
             \item Pour expérimenter, tester des idées
             \item Pour travailler à plusieurs plus facilement
         \end{itemize}
@@ -224,9 +224,9 @@ captionpos=b
 \begin{itemize}
 \item Fichiers de code informatique
 \item Fichiers textes (e.g. .doc)
-\item Documentation de projets
-\item Fichiers binaires (e.g. images, sons) - Volumineux : git LFS$^{*}$
-\item Fichiers de données - Volumineux : git LFS$^{*}$
+\item Fichiers binaires (e.g. images, sons) - Si volumineux : git LFS$^{*}$
+\item Fichiers de données - Si volumineux : git LFS$^{*}$
+\item Documentation de projets (cahier des charges, devis...)
 \item etc.
 \end{itemize}
 \end{block}
@@ -235,7 +235,7 @@ captionpos=b
 \centering {\huge \textbf{\textcolor{red}{Gestion collaborative de projets}}}
 \vspace{.25cm}
 
-\footnotesize $^{*}$Utilisation éventuelle de l'extension \textcolor{blue}{\textbf{\underline{\href{https://git-lfs.com/}{Git Large File Storage}}}}\\
+\footnotesize $^{*}$Utilisation de l'extension \textcolor{blue}{\textbf{\underline{\href{https://git-lfs.com/}{Git Large File Storage}}}}\\
 Taille max. de 5GB sur Github (AWS Amazon S3)
 
 \end{frame}
@@ -271,8 +271,8 @@ Taille max. de 5GB sur Github (AWS Amazon S3)
 \begin{frame}
     \begin{block}{Distributed VCS - Maintenant, depuis un moment (début 2000) !}
      \begin{itemize}
-            \item État serveur et réseau pas critique (approche Pair-à-Pair)
-            \item On peut remonter un serveur à partir d'une machine
+            \item État "serveur" et réseau pas critique (approche Pair-à-Pair)
+            \item On peut remonter un "serveur" à partir des autres machines
             \item Les opérations locales (la majorité) sont rapides
             \item Travail privé possible
         \end{itemize}
