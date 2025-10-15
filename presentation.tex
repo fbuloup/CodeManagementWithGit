@@ -1187,6 +1187,45 @@ Pour plus d'infos : \textcolor{blue}{\textbf{\underline{\href{https://docs.githu
 \end{frame}
 
 \section{Annexes}
+\subsection{Console, Terminal : Command Line Interface (CLI)}
+\begin{frame}[containsverbatim]
+
+\begin{block}{Console, Terminal (Win, Linux, OSX) - Commandes de base 1/2}
+\begin{lstlisting}
+$ pwd                # Print working directory
+$ cd                 # Idem (Win)
+$ mkdir folder       # create folder directory
+$ rm folder          # Remove folder directory
+$ rm -rf folder	     # Idem - Recursive, force
+$ rmdir folder	     # Remove folder directory (Win)
+$ rmdir /S /Q folder # Idem - Recursive, force (Win)
+$ cd Desktop    # Change current directory to Desktop
+$ cd ..         # Change current directory to parent
+$ cat fileName  # Print fileName content to Terminal
+$ more fileName # Idem
+$ type fileName # Idem (Win)
+\end{lstlisting}
+\end{block}
+\end{frame}
+
+\begin{frame}[containsverbatim]
+
+\begin{block}{Console, Terminal (Win, Linux, OSX) - Commandes de base 2/2}
+\begin{lstlisting}
+# Set "Some text" in fileName (Delete, Create before)
+$ echo Some text > fileName
+# Append "Some text" in fileName (Create before)
+$ echo Some text >> fileName
+$ vi fileName      # Edit fileName
+$ notepad fileName # Idem (Win)
+$ ls               # list current directory content
+$ dir              # Idem (Win)
+$ ls -la           # Full info and all
+\end{lstlisting}
+\end{block}
+\end{frame}
+
+
 \subsection{Oh my ?`what? !}
 \begin{frame}[containsverbatim]
 
@@ -1403,44 +1442,32 @@ $ git branch -d rBranchReport # Delete rBranchReport
 
 \end{frame}
 
-\subsection{La remise}
-\begin{frame}[fragile]
+\subsection{Pour finir !}
+
+\begin{frame}[c]
+\tiny
+
+\begin{minipage}{0.5\linewidth}
 \centering
-\includegraphics[scale=0.3]{images/remise.png}
-
-\textcolor{blue}{\textbf{\underline{\href{https://www.youtube.com/watch?v=YXqKG2Tc-Pg}{"La remise" sur Delicious Insights}}}}
-
-
-\end{frame}
-
-\subsection{Comment dire à git d'ignorer des fichiers ?}
-\begin{frame}[fragile]
-
+\includegraphics[scale=0.1]{images/shortsDeliciousInsights.png} \\
+\textcolor{blue}{\textbf{\underline{\href{https://www.youtube.com/@DeliciousInsights/shorts}{Shorts Git (sur Delicious Insights)}}}}
+\end{minipage}\hfill
+\begin{minipage}{0.5\linewidth}
 \centering
-\includegraphics[scale=0.5]{images/gitIgnore.jpg}
-\vspace{1cm}
-
-\textcolor{blue}{\textbf{\underline{\href{https://www.youtube.com/watch?v=gkzBzBomYyI}{"Ignorer des fichiers" sur Delicious Insights}}}}
-
-\end{frame}
-
-\subsection{Quel casse tête tous ces HEAD !}
-\begin{frame}[fragile]
+\includegraphics[scale=0.3]{images/HEAD.png} \\
+\textcolor{blue}{\textbf{\underline{\href{https://stackoverflow.com/questions/2221658/whats-the-difference-between-head-and-head-in-git}{les formes de HEAD expliquées sur StackOverflow}}}}
+\end{minipage}
+\vfill
+\begin{minipage}{0.5\linewidth}
 \centering
-\includegraphics[scale=0.6]{images/HEAD.png}
-\vspace{1cm}
-
-\textcolor{blue}{\textbf{\underline{\href{https://stackoverflow.com/questions/2221658/whats-the-difference-between-head-and-head-in-git}{Les différentes formes de HEAD expliquées sur StackOverflow}}}}
-
-\end{frame}
-
-\subsection{Vidéos sur Delicious Insights}
-\begin{frame}[fragile]
+\includegraphics[scale=0.3]{images/gitIgnore.jpg} \\
+\textcolor{blue}{\textbf{\underline{\href{https://www.youtube.com/watch?v=gkzBzBomYyI}{"Ignorer des fichiers" (sur Delicious Insights)}}}}
+\end{minipage}\hfill
+\begin{minipage}{0.5\linewidth}
 \centering
-\includegraphics[scale=0.3]{images/shortsDeliciousInsights.png}
-
-\textcolor{blue}{\textbf{\underline{\href{https://www.youtube.com/@DeliciousInsights/shorts}{Shorts Git sur Delicious Insights}}}}
-
+\includegraphics[scale=0.1]{images/remise.png} \\
+\textcolor{blue}{\textbf{\underline{\href{https://www.youtube.com/watch?v=YXqKG2Tc-Pg}{"La remise" (sur Delicious Insights)}}}}
+\end{minipage}
 \end{frame}
 
 \end{document}
