@@ -1,0 +1,216 @@
+\documentclass[a4paper,11pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{lmodern}
+\usepackage{caption}
+\usepackage{subcaption}
+% Thème Darmstadt
+\usetheme{Darmstadt}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{ragged2e}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{gitdags}
+\usepackage{fontawesome, wasysym}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{array}
+\usepackage{Pifont}
+
+%\captionsetup[figure]{labelformat=empty}
+
+\setbeamertemplate{navigation symbols}{} 
+\setbeamertemplate{footline} 
+{  
+	\begin{beamercolorbox}[ht=2.5ex,dp=1.125ex,%
+      leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
+      {\usebeamerfont{title in head/foot}\insertshorttitle} \hfill    
+      \insertframenumber / \inserttotalframenumber%
+    \end{beamercolorbox}%
+%     \begin{beamercolorbox}[colsep=1.5pt]{lower separation line foot}
+%     \end{beamercolorbox} 
+}
+
+% Informations sur la présentation
+\title{Gestion de code avec Git (FIEC30EM) Comparaison des solutions de stockage et de gestion de versions}
+\author{frank.buloup@univ-amu.fr} 
+\institute{Aix Marseille Université\\Faculté des Sciences du Sport\\Master 2 IEAP - Facteurs Humains}
+\date{}
+
+\newcounter{exampleBlockCounter}
+\setcounter{exampleBlockCounter}{1} 
+
+\definecolor{comment}{rgb}{0.12, 0.38, 0.18 } %adjusted, in Eclipse: {0.25, 0.42, 0.30 } = #3F6A4D
+\definecolor{keyword}{rgb}{0.37, 0.08, 0.25}  % #5F1441
+\definecolor{string}{rgb}{0.06, 0.10, 0.98} % 
+
+\lstset{
+language=Python,
+frame=single,
+frameround=tttt,
+rulesepcolor=\color{black},
+showspaces=false,showtabs=false,tabsize=2,
+numberstyle=\tiny,numbers=left,
+stringstyle=\color{string},
+keywordstyle = \color{keyword}\bfseries,
+commentstyle=\color{comment}\itshape,
+basicstyle=\ttfamily\footnotesize,
+breaklines=true,
+captionpos=b
+}
+
+%\includeonlyframes{current}
+\begin{document}
+
+\begin{frame}[plain]
+    \titlepage
+    \center{\includegraphics[scale=0.75]{images/by-nc-sa.eps}}
+ 	\vspace{0.05cm}
+
+	\includegraphics[scale=0.6]{images/LogoAMU.png}\hspace*{2cm}
+	\includegraphics[scale=0.35]{images/LogoCNRS.eps}\hspace*{2cm}
+	\includegraphics[scale=0.09]{images/LogoISM.eps}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Sommaire}
+    \tableofcontents
+\end{frame}
+
+\section{Introduction}
+\begin{frame}
+    \frametitle{Introduction}
+    \begin{itemize}
+        \item Comparaison des solutions de stockage cloud et de gestion de versions : OneDrive, Dropbox, Google Drive et Git.
+        \item Chaque outil a ses forces et ses faiblesses selon les besoins.
+    \end{itemize}
+\end{frame}
+
+\section{Comparaison}
+
+\begin{frame}
+    \frametitle{Comparaison des solutions}
+    \begin{table}[h]
+\centering
+\caption{Comparatif 1/3}
+\tiny
+\label{tab:comparaison}
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+\textbf{Critère} & \textbf{OneDrive (Gratuit)} & \textbf{OneDrive (Microsoft 365)} \\
+\midrule
+Type & Stockage cloud & Stockage cloud + suite bureautique \\
+Espace de stockage & 5 Go & 1 To (Pers.) / 1 To par utilisateur (Fam.) \\
+Prix (version payante) & Gratuit & $\sim$70 €/an (Pers.) / $\sim$100 €/an (Fam.) \\
+Applications intégrées & Office Online (basique) & Office 365 complet \\
+Historique des versions & 30 jours (limité) & Jusqu’à 90 jours \\
+Partage de fichiers & \ding{52} Oui (liens, collaborations) & \ding{52} Oui (avancé) \\
+Synchronisation & \ding{52} Automatique & \ding{52} Automatique \\
+Sécurité & Chiffrement en transit/repos & Chiffrement + sécurité avancée \\
+Collab. en temps réel & \ding{52} Oui (fichiers Office) & \ding{52} Oui (Office 365) \\
+Intégrations & Microsoft 365 (Teams, Outlook) & Microsoft 365 + outils pros \\
+Public cible & Grand public, utilisateurs Microsoft & Professionnels, familles \\
+Fichiers adaptés & Tous types (documents, images, vidéos) & Tous types \\
+Gestion des conflits & \ding{55} Basique & \ding{55} Basique \\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Comparaison des solutions}
+    \begin{table}[h]
+\centering
+\caption{Comparatif 2/3}
+\tiny
+\label{tab:comparaison}
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+\textbf{Critère} & \textbf{Dropbox (Gratuit)} & \textbf{Dropbox (Payant)} \\
+\midrule
+Type & Stockage cloud & Stockage cloud + collaboration \\
+Espace de stockage & 2 Go (extensible via parrainages) & 2 To (Plus) / 3 To (Famille)\\
+Prix (version payante) & Gratuit (2 Go) & $\sim$100 €/an (Plus) / $\sim$170 €/an (Famille) \\
+Applications intégrées & Aucune (intégrations tierces) & Dropbox Paper, intégrations (Slack, Zoom) \\
+Historique des versions & 30 jours (gratuit) / 180 jours (payant) & 180 jours (Plus) / 1 an (Pro) \\
+Partage de fichiers & \ding{52} Oui (liens, dossiers partagés) & \ding{52} Oui (contrôle d’accès avancé) \\
+Synchronisation & \ding{52} Automatique (dossier local) & \ding{52} Automatique + sélective \\
+Sécurité & Chiffrement en transit/repos & Chiffrement + options avancées \\
+Collab. en temps réel & \ding{55} Non (sauf intégrations) & \ding{52} Oui (Dropbox Paper) \\
+Intégrations & Slack, Zoom, Adobe & Slack, Zoom, Adobe + API \\
+Public cible & Professionnels, équipes & Équipes, entreprises, créatifs \\
+Fichiers adaptés & Tous types & Tous types \\
+Gestion des conflits & \ding{55} Basique & \ding{55} Basique \\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Comparaison des solutions}
+    \begin{table}[h]
+\centering
+\caption{Comparatif 3/3}
+\tiny
+\label{tab:comparaison}
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+\textbf{Critère} & \textbf{Google Drive (Gratuit)} & \textbf{Git (GitHub)} \\
+\midrule
+Type & Stockage cloud + suite bureautique & Gestion de versions décentralisée \\
+Espace de stockage & 15 Go (partagé avec Gmail) & 10 Go recommandé \\
+Prix (version payante) & Gratuit (15 Go) / $\sim$100 €/an (2 To) & Gratuit / $\sim$4 €/mois (GitHub Pro) \\
+Applications intégrées & Google Workspace (Docs, Sheets) & Aucune (mais GUI, CI/CD, IDE etc.) \\
+Historique des versions & 30 jours (gratuit) / 100 jours (payant) & Illimité (versions, branches, tags) \\
+Partage de fichiers & \ding{52} Oui (liens, collaborations) & \ding{52} Oui mais technique \\
+Synchronisation & \ding{52} Automatique & Manuelle (via git push, git pull) \\
+Sécurité & Chiff. en transit/repos & Chiff. possible (SSH) + contrôle d’accès fin \\
+Collab. en temps réel & \ding{52} Oui (Google Docs/Sheets) & Gestion des conflits, revues de code \\
+Intégrations & Google Workspace (Gmail, Meet) & CI/CD (GitHub Actions), IDE, outils dev \\
+Public cible & Grand public, utilisateurs Google & Dév., data scientists, techniques \\
+Fichiers adaptés & Tous types & Tous types - Si volumineux : Git LFS \\
+Gestion des conflits & \ding{55} Basique & \ding{52} Avancée (fusion, résolution) \\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{frame}
+
+
+
+\section{Quand utiliser Git ?}
+\begin{frame}
+    \frametitle{Quand utiliser Git ?}
+    \begin{itemize}
+        \item Gestion de code source ou fichiers texte plus généralement
+        \item Travail en équipe technique avec suivi précis des modifications
+        \item Historique complet et décentralisé
+        \item \textbf{Non adapté} aux fichiers de plus de 2Go sans outils supplémentaires (Git Large File System)
+    \end{itemize}
+\end{frame}
+
+\section{Recommandations}
+\begin{frame}
+    \frametitle{Recommandations}
+    \begin{block}{Grand public - Bureautique}
+    \begin{itemize}
+    	\item OneDrive si tu utilises Office
+    	\item Google Drive si tu utilises Google Workspace
+    \end{itemize}
+    \end{block}
+    \begin{block}{Professionnels - Équipe, projet administratif}
+    \begin{itemize}
+    	\item Dropbox pour les intégrations
+    	\item OneDrive si tu es dans l’écosystème Microsoft
+    \end{itemize}
+    \end{block}
+    \begin{block}{Professionnels - Équipe, projet technique ou mixte}
+	 \begin{itemize}
+    	\item Git (e.g. GitHub, GitLab, Bitbucket)
+    \end{itemize}    
+    \end{block}
+\end{frame}
+
+\end{document}
