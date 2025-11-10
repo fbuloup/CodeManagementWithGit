@@ -4,7 +4,7 @@ Following the links below, you will find the outline content and projects descri
 
 * <a id="raw-url" href="https://raw.githubusercontent.com/fbuloup/CodeManagementWithGit/main/presentation.pdf">Outline</a>
 * <a id="raw-url" href="https://raw.githubusercontent.com/fbuloup/CodeManagementWithGit/main/projets.pdf">Projects</a>
-* <a id="raw-url" href="https://raw.githubusercontent.com/fbuloup/CodeManagementWithGit/main/comparaison.pdf">Projects</a>
+* <a id="raw-url" href="https://raw.githubusercontent.com/fbuloup/CodeManagementWithGit/main/comparaison.pdf">Compare collaborative tools</a>
 
 [This](https://github.com/MasterFHGit/FirstRepository) repository is used for exercises during class.
 
