@@ -81,26 +81,49 @@ captionpos=b
 }
 
 \section{Introduction}
-\subsection{Organisation \& Objectifs du module}
+\subsection{Objectifs du module \& Organisation}
+\begin{frame}
+
+\center
+À l'issue de cette formation, vous serez capable de :
+\vspace{0.25cm}
+
+\begin{enumerate}
+\item Mettre en œuvre une petite plateforme d'acquisition de données
+	\begin{enumerate}
+		\item Utiliser Arduino IDE et un Uno R pour l'acquisition des données 
+		\item Utiliser Python pour créer un gestionnaire d'essai
+		\item Utiliser Python pour le traitement des données
+	\end{enumerate}
+\item Mettre en œuvre un projet en mode collaboratif avec Git sur GitHub
+	\begin{enumerate}
+		\item Décrire les principes de fonctionnement d'un gestionnaire de versions distribué
+		\item Créer, initialiser et cloner un dépôt avec Git
+		\item Manipuler les commandes de Git pour gérer les fichiers et les branches
+		\item Résoudre les conflits de fusion
+	\end{enumerate}
+\end{enumerate}
+\end{frame}
+
 \begin{frame}
 	\begin{block}{Organisation}
 		\begin{itemize}
-			\item Cours et TDs pour apprendre les bases de Git
 			\item Un projet par équipe pour mettre en œuvre ces apprentissages
+			\item Cours et TDs pour apprendre les bases de Git			
 			\item Deux (à trois) étudiants par équipe
 		\end{itemize}
 	\end{block}
 
 	\begin{block}{Volumes horaires}
 		\begin{itemize}
-			\item Environ 4 heures de cours/TDs
 			\item Environ 14 heures pour le projet
+			\item Environ 4 heures de cours/TDs
 %			\item Environ 2 heures pour l'oral de présentation du projet
 		\end{itemize}
 	\end{block}
 	\begin{alertblock}{Evaluation}
 		\begin{itemize}
-			\item 50\% sur un CC (examen écrit 30mn)
+			\item 50\% sur un CC Git (examen écrit 30mn)
 			\item 50\% sur le projet tout au long du module
 			%\item 50\% sur une présentation orale du projet par équipe
 			%	\begin{itemize}
@@ -112,49 +135,46 @@ captionpos=b
 	\end{alertblock}
 \end{frame}
 
-\begin{frame}
-
-\center
-À l'issue de cette formation, vous serez capable de :
-\vspace{0.25cm}
-
-\begin{enumerate}
-\item Décrire les principes de fonctionnement d'un gestionnaire de versions distribué
-\item Créer, initialiser et cloner un dépôt avec Git
-\item Manipuler les commandes de Git pour gérer les fichiers et les branches
-\item Résoudre les conflits de fusion
-\item Mettre en œuvre un projet en mode collaboratif avec Git sur GitHub
-\end{enumerate}
-\end{frame}
-
-
-
-
-
-
-
-
-\subsection{Le compte GitHub \& les projets}
-\begin{frame}
+\subsection{les projets \& Les comptes GitHub}
+\begin{frame}	
+	\begin{block}{Les projets}
+	Sur la base d'un Arduino Uno R4 Wifi avec :
+		\begin{itemize}
+			\item une jauge de contrainte (2 postes)
+			\item une résistance à détection de force (2 postes)
+			\item un capteur à ultrason (2 postes)
+			\item \textcolor{red}{un potentiomètre}
+			\item \textcolor{red}{un codeur optique}
+		\end{itemize}
+	\end{block}
 	\begin{block}{Comptes GitHub}
 		\begin{itemize}
 			\item Création de comptes sur GitHub
 			\item Compte du Master : MasterFHGit
 		\end{itemize}	
-	\end{block}
-	\begin{block}{Les projets}
-	Sur la base d'un Arduino Uno R4 Wifi avec :
-		\begin{itemize}
-			\item une jauge de contrainte (2 postes)
-			\item un potentiomètre
-			\item une résistance à détection de force (2 postes)
-			\item un capteur à ultrason (2 postes)
-			\item un codeur optique
-		\end{itemize}
-	\end{block}
-	
+	\end{block}	
 \end{frame}
 
+\subsection{Les projets : c'est parti dès maintenant !}
+\begin{frame}
+
+\begin{block}{Les projets - Répartition par binômes voire trinômes}
+Sur la base d'un Arduino Uno R4 Wifi avec :
+	\begin{itemize}
+		\item une jauge de contrainte (2 postes - 2x2 étudiants)
+		\item une résistance à détection de force (2 postes - 2x2 étudiants)
+		\item un capteur à ultrason (2 postes - 2x2 étudiants)
+		\item \textcolor{red}{un potentiomètre - 2 étudiants}
+		\item \textcolor{red}{un codeur optique - 2 étudiants}
+	\end{itemize}
+\end{block}
+\centering
+
+\normalsize
+\textcolor{blue}{\textbf{\underline{\href{https://raw.githubusercontent.com/fbuloup/CodeManagementWithGit/main/projets.pdf}{Veuillez suivre ce lien pour démarrer le projet dès maintenant}}}}	
+\end{frame}
+
+\section{Présentation, Utilisation \& Installation de Git}
 \subsection{Git ? C'est quoi ?}
 \begin{frame}
 
@@ -309,7 +329,6 @@ Taille max. de 5GB sur Github (AWS Amazon S3)
     \end{block}
 \end{frame}
 
-\section{Utilisation \& Installation de Git}
 \subsection{Les différents modes d'utilisation}
 \begin{frame}
     \begin{block}{Comment utiliser Git ?}
@@ -1185,14 +1204,6 @@ $ git branch -D feature   # Delete feature
 \end{alertblock}
 \centering
 Pour plus d'infos : \textcolor{blue}{\textbf{\underline{\href{https://docs.github.com/en/enterprise-server@3.10/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-access-to-your-personal-repositories/inviting-collaborators-to-a-personal-repository}{Inviter des collaborateurs}}}}
-\end{frame}
-
-\section{Projet}
-\begin{frame}
-\centering
-
-\normalsize
-\textcolor{blue}{\textbf{\underline{\href{https://raw.githubusercontent.com/fbuloup/CodeManagementWithGit/main/projets.pdf}{Veuillez suivre ce lien}}}}	
 \end{frame}
 
 \section{Annexes}
