@@ -1,0 +1,1158 @@
+\documentclass[a4paper,11pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{caption}
+\usepackage{subcaption}
+% Thème Darmstadt
+\usetheme{Darmstadt}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{ragged2e}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{gitdags}
+\usepackage{fontawesome, wasysym}
+%\captionsetup[figure]{labelformat=empty}
+
+\setbeamertemplate{navigation symbols}{} 
+\setbeamertemplate{footline} 
+{  
+	\begin{beamercolorbox}[ht=2.5ex,dp=1.125ex,%
+      leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
+      {\usebeamerfont{title in head/foot}\insertshorttitle} \hfill    
+      \insertframenumber / \inserttotalframenumber%
+    \end{beamercolorbox}%
+%     \begin{beamercolorbox}[colsep=1.5pt]{lower separation line foot}
+%     \end{beamercolorbox} 
+}
+
+% Informations sur la présentation
+\title{Gestion de code avec Git (FIEC30EM)\\Utiliser Git avec GitHub}
+\author{frank.buloup@univ-amu.fr} 
+\institute{Aix Marseille Université\\Faculté des Sciences du Sport\\Master 2 IEAP - Facteurs Humains}
+\date{}
+
+\newcounter{exampleBlockCounter}
+\setcounter{exampleBlockCounter}{1} 
+
+\definecolor{comment}{rgb}{0.12, 0.38, 0.18 } %adjusted, in Eclipse: {0.25, 0.42, 0.30 } = #3F6A4D
+\definecolor{keyword}{rgb}{0.37, 0.08, 0.25}  % #5F1441
+\definecolor{string}{rgb}{0.06, 0.10, 0.98} % 
+
+\lstset{
+language=Python,
+frame=single,
+frameround=tttt,
+rulesepcolor=\color{black},
+showspaces=false,showtabs=false,tabsize=2,
+numberstyle=\tiny,numbers=left,
+stringstyle=\color{string},
+keywordstyle = \color{keyword}\bfseries,
+commentstyle=\color{comment}\itshape,
+basicstyle=\ttfamily\footnotesize,
+breaklines=true,
+captionpos=b
+}
+
+%\includeonlyframes{current}
+
+\begin{document}
+
+% Première diapositive : Titre
+\begin{frame}[plain]
+    \titlepage
+    \center{\includegraphics[scale=0.75]{images/by-nc-sa.eps}}
+ 	\vspace{0.5cm}
+
+	\includegraphics[scale=0.6]{images/LogoAMU.png}\hspace*{2cm}
+	\includegraphics[scale=0.35]{images/LogoCNRS.eps}\hspace*{2cm}
+	\includegraphics[scale=0.09]{images/LogoISM.eps}
+    
+\end{frame}
+
+\begin{frame}{Gestion de code avec Git}
+	\tableofcontents[hideallsubsections]
+\end{frame}
+
+\AtBeginSection{%
+    \begin{frame}
+        \tableofcontents[sections=\value{section}]
+    \end{frame}
+}
+
+\section{Pour aller plus loin}
+\subsection{Utilisation sur GitHub}
+\begin{frame}
+
+\begin{exampleblock}{Exercice \Roman{exampleBlockCounter} - Premier pas avec GitHub}
+\begin{enumerate}
+    \item Créer un compte sur GitHub
+    \item Créer un premier dépôt public dans GitHub nommé "FirstRepository"
+\end{enumerate}
+
+     \center{
+        \includegraphics[scale=0.3]{images/CreateRepo.PNG}
+        \captionof{figure}{Création d'un dépôt dans Github}}
+\end{exampleblock}
+
+
+
+\end{frame}
+
+
+\begin{frame}
+\center{
+        \includegraphics[scale=0.25]{images/firstRepository-2.png}}
+        \captionof{figure}{Création du dépôt "FirstRepository" public avec fichier README}
+\end{frame}
+
+
+\begin{frame}
+
+\begin{block}{État initial après le premier commit sur GitHub}
+\centering
+\begin{tikzpicture}
+	\gitDAG[grow right sep = 2em]{2d6c035};
+    \gitremotebranch
+    	[main]    % node name
+    	{main} % node text
+        {right=of 2d6c035}    % node placement
+        {2d6c035}             % target
+     \gitHEAD
+        {above=of main} % node placement
+        {main}          % target
+\end{tikzpicture}
+\begin{itemize}
+	\item \textbf{2d6c035} est l'ID du commit (l'ID complet est un SHA1)
+	\item \textbf{main} est une référence au dernier commit de la branche qui porte le même nom, sur le dépôt distant
+	\item On peut avoir plusieurs branches et donc plusieurs références (\textbf{main}, \textbf{dev}, \textbf{feature1} etc.)
+	\item On trouvera aussi \textbf{master} à la place de \textbf{main}
+	\item \textbf{main} ou \textbf{master} sont par convention des noms de branches de production
+\end{itemize}
+
+
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{exampleblock}{Exercice \Roman{exampleBlockCounter} - Premier pas avec GitHub} 
+\begin{enumerate}
+	\setcounter{enumi}{2}
+    \item Modifier le fichier README.md sur GitHub
+\end{enumerate}
+\end{exampleblock}
+
+\pause
+
+\begin{block}{État après le deuxième commit sur github}
+\centering
+\begin{tikzpicture}
+	\gitDAG[grow right sep = 2em]{2d6c035 -- 4f55e02};
+    \gitremotebranch
+    	[main]    % node name
+    	{main} % node text
+        {right=of 4f55e02}    % node placement
+        {4f55e02}             % target
+     \gitHEAD
+        {above=of main} % node placement
+        {main}  
+\end{tikzpicture}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{exampleblock}{Exercice \Roman{exampleBlockCounter} - Premier pas avec GitHub} 
+\begin{enumerate}
+	\setcounter{enumi}{3}
+    \item Créer une nouvelle branche nommée \textbf{dev}
+    \item Sur la branche \textbf{dev}, modifier le fichier README.md
+\end{enumerate}
+\end{exampleblock}
+
+\begin{block}{État juste après la création de la branche \textbf{dev}}
+\centering
+\begin{tikzpicture}
+	\gitDAG[grow right sep = 2em]{2d -- 4f};
+    \gitremotebranch
+    	[main]    % node name
+    	{main} % node text
+        {below=of 4f}    % node placement
+        {4f}             % target
+     \gitbranch
+    	[dev]    % node name
+    	{dev} % node text
+        {right=of 4f}    % node placement
+        {4f}             % target
+     \gitHEAD
+        {right=of dev} % node placement
+        {dev}  
+\end{tikzpicture}
+
+\end{block}
+
+\pause
+
+\begin{block}{État juste après le commit dans la branche \textbf{dev}}
+\centering
+
+\begin{tikzpicture}
+	\gitDAG[grow right sep = 2em]{
+		2d -- 4f -- {
+			67
+			}
+		};
+    \gitremotebranch
+    	[main]    % node name
+    	{main} % node text
+        {below=of 4f}    % node placement
+        {4f}             % target
+     \gitbranch
+    	[dev]    % node name
+    	{dev} % node text
+        {right=of 67}    % node placement
+        {67}             % target
+     \gitHEAD
+        {below=of dev} % node placement
+        {dev}  
+\end{tikzpicture}
+
+\end{block}
+\end{frame}
+
+\subsection*{Commandes clone \& remote}
+\begin{frame}
+
+\center{
+        \includegraphics[scale=0.675]{images/GitCloneRemote.PNG}
+        \captionof{figure}{Commandes clone et remote}}
+ \end{frame}
+
+
+\begin{frame}
+\center{
+        \includegraphics[scale=0.425]{images/configFile.PNG}
+        \captionof{figure}{Dossier .git et fichier config}}
+\end{frame}
+
+\begin{frame}
+\begin{alertblock}{remote "origin" ?}
+\begin{itemize}
+    \item origin est un alias local donné au dépôt distant
+    \item il peut être changé dans le fichier config ...
+    \center{
+        \includegraphics[scale=0.5]{images/origin1.PNG}
+        \captionof{figure}{Changer l'alias origin}}
+\end{itemize}
+\centering
+    
+\end{alertblock}
+\end{frame}
+
+\begin{frame}
+\begin{alertblock}{... ou lors de la commande clone}
+    \center{
+        \includegraphics[scale=0.45]{images/origin2.PNG}
+        \captionof{figure}{Changer l'alias origin}}
+\end{alertblock}
+\end{frame}
+
+\begin{frame}
+\begin{alertblock}{Comment supprimer un dépôt local ?}
+    \center{
+        \includegraphics[scale=0.65]{images/deleteLocalRepository.PNG}
+        \captionof{figure}{Supprimer un dépôt local}}
+\centering
+    
+\end{alertblock}
+
+\begin{alertblock}{branch, main, fetch, push, merge etc. ?}
+    \center{
+       C'est le vocabulaire des DVCS (Git)\\
+       Plus clair progressivement !}
+\centering
+    
+\end{alertblock}
+\end{frame}
+
+\begin{frame}[containsverbatim]{Petit résumé intermédiaire}
+\begin{alertblock}{Quelques Commandes : clone, remote}
+    \begin{lstlisting}
+$ git clone url           # Clone repository
+$ git remote -v           # Remotes infos
+    \end{lstlisting}
+\end{alertblock}
+
+\end{frame}
+
+\subsection*{Commandes fetch \& checkout}
+\begin{frame}
+
+ \center{
+        \includegraphics[scale=0.4]{images/GitFetchCheckout.PNG}
+        \captionof{figure}{Importer un dépôt distant - Version 2}}
+
+    
+\end{frame}
+
+\begin{frame}
+
+ \center{
+        \includegraphics[scale=0.4625]{images/GitFetchCheckout2.PNG}
+        \captionof{figure}{Importer un dépôt distant - Les deux versions}}
+
+    
+\end{frame}
+
+
+\subsection*{Commandes pull \& merge}
+
+ \begin{frame}
+
+\begin{exampleblock}{Exercice \Roman{exampleBlockCounter} - Changements à partir du dépôt distant}\stepcounter{exampleBlockCounter} 
+\begin{enumerate}
+    \item Changer le fichier README sur github (branche main)
+    \item Reporter ces changements en local
+\end{enumerate}
+
+\end{exampleblock}
+
+\center{
+        \includegraphics[scale=0.5]{images/GitPull.png}
+        \captionof{figure}{Mettre à jour un dépôt local - Les deux versions}}
+
+\end{frame}
+
+\begin{frame}
+
+ \center{
+        \includegraphics[scale=0.45]{images/gitpullTerminal.png}
+        \captionof{figure}{Mettre à jour un dépôt local - Version 1}}
+
+    
+\end{frame}
+
+\begin{frame}
+
+ \center{
+        \includegraphics[scale=0.4]{images/gitFetchMerge.png}
+        \captionof{figure}{Mettre à jour un dépôt local - Version 2}}
+
+    
+\end{frame}
+
+
+\subsection*{Commande fetch \& option --dry-run}
+\begin{frame}
+
+ \center{
+        \includegraphics[scale=0.35]{images/gitFetchDryRun.png}
+        \captionof{figure}{Le dépôt local est-il à jour ? Non !}
+        }
+
+ \center{
+        \includegraphics[scale=0.35]{images/gitFetchDryRun2.png}
+        \captionof{figure}{Maintenant oui !}}
+
+    
+\end{frame}
+
+\subsection*{Installation \& utilisation en local}
+\begin{frame}[containsverbatim]{Petit résumé intermédiaire}
+\begin{alertblock}{Quelques commandes : pull, fetch}
+    \begin{lstlisting}
+$ git pull origin               # Get from origin
+$ git fetch origin && git merge # Idem !
+$ git fetch origin --dry-run    # Has origin changed ?
+$ git log                       # Print commits
+$ git log --oneline             # Print abbrev-commits
+    \end{lstlisting}
+\end{alertblock}
+\end{frame}
+
+
+
+\subsection*{Commandes add, commit \& push}
+ \begin{frame}
+
+\begin{exampleblock}{Exercice \Roman{exampleBlockCounter} - Changements à partir du dépôt local}\stepcounter{exampleBlockCounter} 
+\begin{enumerate}
+    \item Changer le fichier README en local (branche main)
+    \item Reporter ces changements en distant
+\end{enumerate}
+
+\end{exampleblock}
+
+\center{
+        \includegraphics[scale=0.375]{images/gitPush.png}
+        \captionof{figure}{Mettre à jour le dépôt distant}}
+
+\end{frame}
+
+
+ \begin{frame}
+
+\center{
+        \includegraphics[scale=0.3]{images/gitStaging.png}
+        \captionof{figure}{Zone de transit}}
+
+\end{frame}
+ \begin{frame}
+\center{
+        \includegraphics[scale=0.3]{images/gitPush2.png}
+        \captionof{figure}{Mettre à jour le dépôt distant}}
+
+\end{frame}
+
+\subsection*{Personal Access Token}
+\begin{frame}
+    \center{
+        \includegraphics[scale=0.55]{images/GenerateToken.png}
+        \captionof{figure}{Génération d'un jeton dans GitHub}}
+
+\begin{alertblock}{Génération d'un jeton d'accès personnel}
+\begin{itemize}
+    \item Conserver ce jeton. Il n'est visible qu'une seule fois !
+    \item C'est bien de lui donner un petit nom (note) !
+    \item Ne pas oublier de sélectionner l'option "repo"
+    \item Sur un dépôt privé, rien n'est possible sans jeton
+\end{itemize}
+
+\end{alertblock}
+
+Pour plus d'infos : \textcolor{blue}{\textbf{\underline{\href{https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens}{Personal Access Token (PAT)}}}}
+\end{frame}
+
+\subsection*{Commandes add, commit \& push} 
+\begin{frame}
+    \center{
+        \includegraphics[scale=0.4]{images/gitPush3.png}
+        \captionof{figure}{Avec le jeton comme mdp, le push fonctionne}}
+\end{frame}
+
+\begin{frame}[containsverbatim]
+
+\begin{alertblock}{Pour enregistrer le jeton}
+\begin{lstlisting}
+$ git config --global credential.helper store
+\end{lstlisting}
+\justifying ... et ne plus avoir à le retaper qu'une seule fois. Le jeton est enregistré dans le fichier texte \textbf{.git-credentials} de votre répertoire personnel.
+\end{alertblock}
+
+\begin{alertblock}{Pour signer les commits automatiquement}
+\begin{lstlisting}
+$ git config --global user.email "mail@somewhere.com"
+$ git config --global user.name "username"
+\end{lstlisting}
+\centering\textbf{Signed-off-by: username \textless mail@somewhere.com\textgreater}
+\end{alertblock}
+
+\begin{alertblock}{Pour cloner (ou autre) on peut aussi faire :}
+\begin{lstlisting}
+$ git clone https://uname:pass@github.com/uname/rp.git
+\end{lstlisting}
+\end{alertblock}
+
+\end{frame}
+
+\begin{frame}[containsverbatim]{Petit résumé intermédiaire}
+\begin{alertblock}{Quelques commandes : add, commit}
+\justifying
+    \begin{lstlisting}
+$ git add fileName # Stage fileName
+$ git add .        # Stage modified and new files
+$ git add -u       # Stage modified and deleted files
+$ git add -A       # Stage everything
+$ git commit -m "A commit message"
+    \end{lstlisting}
+\end{alertblock}
+\end{frame}
+
+\begin{frame}[containsverbatim]
+\begin{alertblock}{D'autres commandes utiles ! switch, branch, checkout}
+\justifying
+    \begin{lstlisting}
+$ git switch branchName    # Switch to branchName
+$ git checkout 52fd6e4     # In detached HEAD
+$ git checkout branchName  # HEAD on branchName
+$ git branch -D branchName # To delete branchName
+$ git branch	             # List all local branches
+$ git branch -r	           # List all remote branches
+$ git branch -a	           # List all branches
+$ git branch newBranchName # Create new branch
+$ git switch -c neBrNa     # Create & switch to neBrNa
+    \end{lstlisting}
+\end{alertblock}
+\end{frame}
+
+\subsection{Les zones de Git}
+\begin{frame}[containsverbatim]
+    \center{
+        \includegraphics[scale=0.3]{images/zones1.png}}
+\end{frame}
+
+\begin{frame}[containsverbatim]
+    \center{
+        \includegraphics[scale=0.3]{images/zones2.png}}
+        
+\centering  
+\textbf{\textcolor{red}{stash = réserve, remise}}
+
+\end{frame}
+
+\subsection{Annuler un commit : commande revert}
+
+\begin{frame}[fragile]
+
+\begin{exampleblock}{Exercice \Roman{exampleBlockCounter} - Commande revert}
+\begin{enumerate}
+    \item Ajouter un nouveau commit dans la branche \textbf{main} en modifiant le fichier README.md (Before revert)
+    \item Utiliser la commande revert pour annuler ce commit
+    \item Utiliser la commande checkout pour vous déplacer dans les commits
+\end{enumerate}
+\end{exampleblock}
+\pause
+\begin{alertblock}{Commande revert}
+\begin{lstlisting}
+$ git switch main         # Goto main branch
+$ vim README.md           # Modify README
+$ git commit -am "Before revert" # Commit
+$ git revert HEAD         # Revert last commit
+$ git log --oneline       # See logs
+$ cat README.md           # File content
+$ git checkout 44e5761    # Goto previous commit
+$ cat README.md           # File content
+\end{lstlisting}
+\end{alertblock}
+
+\end{frame}
+
+\begin{frame}
+\begin{alertblock}{Commande revert}
+\begin{itemize}
+\justifying
+\item Elle ne modifie pas l'historique des commits (pas de suppression de commits)
+\item Elle crée un nouveau commit
+\item Elle détermine comment inverser les changements introduits par le commit spécifié et ajoute un nouveau commit avec le contenu inversé qui en résulte
+\end{itemize}
+\end{alertblock}
+
+\end{frame}
+
+
+\stepcounter{exampleBlockCounter} 
+
+\subsection{Modifier l'historique des commits : commande reset}
+
+\begin{frame}[fragile]
+
+\begin{exampleblock}{Exercice \Roman{exampleBlockCounter} - Commande reset}
+\begin{enumerate}
+	\item Modifier le fichier README.md sans faire de commit 
+    \item Supprimer les deux derniers commits (le Before revert et le revert) précédents en utilisant la commande reset
+    \item Conclusion
+\end{enumerate}
+\end{exampleblock}
+\pause
+\begin{alertblock}{Commande reset}
+\begin{lstlisting}
+$ git checkout main   # HEAD to main
+$ vim README.md       # Change README.md
+$ git log --oneline   # See logs
+$ git reset 9d49258   # Reset two commits
+$ git log --oneline   # See logs
+$ cat README.md       # File content
+$ git restore README.md # Get from index
+$ cat README.md       # File content
+\end{lstlisting}
+\end{alertblock}
+
+\end{frame}
+
+\begin{frame}
+
+    \center{
+        \includegraphics[scale=0.5]{images/reset.png}
+        \captionof{figure}{Commande reset - Les différents modes}}
+\end{frame}
+
+\begin{frame}
+\begin{alertblock}{Commande reset - Option mixed}
+\begin{itemize}
+\justifying
+\item Elle revient dans l'état du commit spécifié en mettant l'index (staging area) à jour mais pas la copie de travail
+\item Elle modifie l'historique des commits (supprime des commits)
+\item La commande restore permet de récupérer l'index : git restore README.md
+\item C'est l'option par défaut : mode mixte
+\end{itemize}
+\end{alertblock}
+\centering
+\textbf{\textcolor{red}{"git reset idCommit" et "git reset -\smallskip-mixed idCommit" sont donc des commandes indentiques}}
+
+\end{frame}
+
+
+\begin{frame}[fragile]
+\begin{alertblock}{Commande reset - Options soft, mixed et hard}
+\begin{itemize}
+\justifying
+\item Récupérer l'état de certains fichiers et conserver les modifications en cours pour les autres fichiers
+\item Réécrire l'historique des commits dans le dépôt (e.g. regrouper des commits)
+\end{itemize}
+\end{alertblock}
+
+\begin{alertblock}{Comment annuler un reset ?}
+\justifying
+Quelle que soit l'option utilisée, il est toujours possible d'annuler un reset en retrouvant l'ID des commits par la commande reflog
+\begin{lstlisting}
+$ git reflog  # get idCommit just before reset
+$ # reset hard to this commit
+$ git reset --hard idCommit
+\end{lstlisting}
+\end{alertblock}
+
+\center{
+\textbf{\textcolor{red}{-\smallskip-hard reste une option dangereuse !}}}
+
+\end{frame}
+
+\stepcounter{exampleBlockCounter} 
+
+\subsection{Fusionner et rebaser des branches - Résolution de conflits}
+
+\begin{frame}[fragile]
+
+\begin{exampleblock}{Exercice \Roman{exampleBlockCounter} - Préparation fusion et rebase}
+\begin{enumerate}
+    \item Ajouter un nouveau commit dans la branche \textbf{dev}
+\end{enumerate}
+\end{exampleblock}
+\pause
+\begin{alertblock}{Préparation fusion et rebase}
+\begin{lstlisting}
+$ git switch dev         # Goto dev branch
+$ vim README.md          # Modify README
+$ git commit -am "devC1" # Commit 1 in dev branch
+\end{lstlisting}
+\end{alertblock}
+
+\end{frame}
+\stepcounter{exampleBlockCounter} 
+\begin{frame}
+
+\begin{block}{État actuel du dépôt local}
+\centering
+
+\begin{tikzpicture}
+	\gitDAG[grow right sep = 2em]{
+		2d -- 4f -- {
+			ad -- c4,
+			67 -- 32,
+			}
+		};
+    \gitremotebranch
+    	[main]    % node name
+    	{main} % node text
+        {right=of c4}    % node placement
+        {c4}             % target
+     \gitbranch
+    	[dev]    % node name
+    	{dev} % node text
+        {right=of 32}    % node placement
+        {32}             % target
+     \gitHEAD
+        {right=of main} % node placement
+        {main}  
+\end{tikzpicture}
+
+\end{block}
+
+\begin{alertblock}{Comment récupérer les modifications de \textbf{dev} dans \textbf{main} ?}
+\begin{itemize}
+\item Les branches \textbf{dev} et \textbf{main} ont divergées
+\item Problème de fusion de branches : gestion des conflits
+\end{itemize}
+
+\end{alertblock}
+\end{frame}
+
+\begin{frame}[containsverbatim]
+
+\begin{exampleblock}{Exercice \Roman{exampleBlockCounter} - Fusion de branches avec conflits}
+\begin{enumerate}
+    \item Fusionner la branche dev dans la branche main en local
+\end{enumerate}
+
+\end{exampleblock}
+
+\begin{alertblock}{Fusionner : la commande merge}
+\begin{lstlisting}
+$ git switch main  # Goto main branch
+$ git merge dev    # Merge dev branch to main branch
+\end{lstlisting}
+\end{alertblock}
+
+\end{frame}
+
+\begin{frame}[containsverbatim]
+\center{
+        \includegraphics[scale=0.35]{images/merge1.png}
+        \captionof{figure}{Résultat de la fusion}}
+
+\end{frame}
+
+\begin{frame}[containsverbatim]
+
+\begin{exampleblock}{Exercice \Roman{exampleBlockCounter} - Fusion de branches avec conflits}
+\begin{enumerate}
+    \item Fusionner la branche dev dans la branche main en local
+    \item Modifier le ficher README.md
+    \item Ajouter ce fichier au staging (marquer la résolution de conflits)
+    \item Faire le commit
+\end{enumerate}
+
+\end{exampleblock}
+
+\begin{alertblock}{Fusionner : la commande merge}
+\begin{lstlisting}
+$ git switch main   # Goto main branch
+$ git merge dev     # Merge dev branch to main branch
+$ vim README.md     # Modify README.md
+$ git add README.md # To mark resolution
+$ git commit -m "dev->main - Conflicts resolution"
+\end{lstlisting}
+\end{alertblock}
+\center{\textbf{\textcolor{red}{Ne pas hésiter à utiliser la commande\\git status régulièrement}}}
+
+\end{frame}
+
+
+
+\begin{frame}
+
+\begin{block}{État du dépôt local après la fusion - Merge}
+\centering
+
+\begin{tikzpicture}
+	\gitDAG[grow right sep = 2em]{
+		2d -- 4f -- {
+			ad -- c4 -- 58,
+			67 -- 32 -- 58,
+			}
+		};
+    \gitremotebranch
+    	[main]    % node name
+    	{main} % node text
+        {right=of 58}    % node placement
+        {58}             % target
+     \gitbranch
+    	[dev]    % node name
+    	{dev} % node text
+        {right=of 32}    % node placement
+        {32}             % target
+     \gitHEAD
+        {below=of main} % node placement
+        {main}  
+\end{tikzpicture}
+\end{block}
+\centering
+\textbf{\textcolor{red}{Les commits de la branche \textit{dev} ont été fusionnés avec la branche \textit{main} dans le dernier commit de cette branche (58)}}
+
+\end{frame}
+
+\stepcounter{exampleBlockCounter} 
+\begin{frame}[containsverbatim]
+
+\begin{exampleblock}{Exercice \Roman{exampleBlockCounter} - Rebase de branches avec conflits}
+\begin{enumerate}
+	\item Revenir dans l'état du dépôt distant (supprimer puis cloner de nouveau le dépôt distant)
+	\item Ajouter un nouveau commit dans la branche \textbf{dev} en local
+    \item Rebaser la branche dev dans la branche main en local
+    \item Modifier le ficher README.md
+    \item Ajouter ce fichier au staging pour marquer la résolution de conflits
+    \item Terminer le rebase
+\end{enumerate}
+
+\end{exampleblock}
+
+\end{frame}
+
+\begin{frame}[containsverbatim]
+
+\begin{alertblock}{Rebaser : la commande rebase}
+\begin{lstlisting}
+$ git switch dev         # Goto dev branch
+$ vim README.md          # Edit readme
+$ git commit -am "devC1" # New commit in dev
+$ git switch main        # Goto main
+$ git rebase main dev    # Rebase dev in main
+$ vim README.md          # Resolve conflicts
+$ git add README.md      # Mark resolved
+$ git rebase --continue  # Continue rebase
+$ git switch main        # Goto main
+$ git merge dev          # Merge dev in main
+$ git branch -d dev      # Delete dev (-D?)
+\end{lstlisting}
+\end{alertblock}
+
+\end{frame}
+
+
+\begin{frame}
+
+\begin{block}{État du dépôt local après le rebase}
+\centering
+
+\begin{tikzpicture}
+	\gitDAG[grow right sep = 2em]{
+		2d -- 4f -- ad -- c4 -- 67 -- 32
+		};
+    \gitremotebranch
+    	[main]    % node name
+    	{main} % node text
+        {right=of 32}    % node placement
+        {32}             % target
+     \gitbranch
+    	[dev]    % node name
+    	{dev} % node text
+        {below=of 32}    % node placement
+        {32}             % target
+     \gitHEAD
+        {below=of main} % node placement
+        {main}  
+\end{tikzpicture}
+\end{block}
+\centering
+\textbf{\textcolor{red}{Tous les commits de la branche \textit{dev} ont été mis à la suite de ceux de la branche \textit{main}}}
+
+\end{frame}
+
+\begin{frame}
+\center{
+        \includegraphics[scale=0.25]{images/merge.png}
+        \includegraphics[scale=0.3]{images/rebase.png}
+        \captionof{figure}{Illustration des commandes merge à gauche et rebase à droite}}
+\end{frame}
+
+\begin{frame}[containsverbatim]{Petit résumé intermédiaire}
+
+\begin{alertblock}{Fusionner : la commande merge}
+\begin{lstlisting}
+# Merge branchName in current branch
+$ git merge branchName 
+\end{lstlisting}
+\end{alertblock}
+
+
+\begin{alertblock}{Rebaser : la commande rebase}
+\begin{lstlisting} 
+$ git rebase main feature # Rebase feature in main
+$ .....                   # Resolve conflicts ?
+$ git rebase --continue   # Continue rebase
+$ git switch main         # Return to main
+$ git merge feature       # Merge feature in main
+$ git branch -D feature   # Delete feature
+\end{lstlisting}
+\end{alertblock}
+
+
+\end{frame}
+
+\subsection{Collaboration}
+\begin{frame}
+
+\begin{alertblock}{Travail en équipe}
+\begin{itemize}
+    \item Chaque développeur doit avoir un compte GitHub
+    \item Chaque développeur doit avoir un PAT
+    \item Le propriétaire du dépôt origine doit envoyer des invitations
+\end{itemize}
+\end{alertblock}
+\centering
+Pour plus d'infos : \textcolor{blue}{\textbf{\underline{\href{https://docs.github.com/en/enterprise-server@3.10/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-access-to-your-personal-repositories/inviting-collaborators-to-a-personal-repository}{Inviter des collaborateurs}}}}
+\end{frame}
+
+\section{Annexes}
+\subsection{Console, Terminal : Command Line Interface (CLI)}
+\begin{frame}[containsverbatim]
+
+\begin{block}{Console, Terminal (Win, Linux, OSX) - Commandes de base 1/2}
+\begin{lstlisting}
+$ pwd                # Print working directory
+$ cd                 # Idem (Win)
+$ mkdir folder       # create folder directory
+$ rm folder          # Remove folder directory
+$ rm -rf folder	     # Idem - Recursive, force
+$ rmdir folder	     # Remove folder directory (Win)
+$ rmdir /S /Q folder # Idem - Recursive, force (Win)
+$ cd Desktop    # Change current directory to Desktop
+$ cd ..         # Change current directory to parent
+$ cat fileName  # Print fileName content to Terminal
+$ more fileName # Idem
+$ type fileName # Idem (Win)
+\end{lstlisting}
+\end{block}
+\end{frame}
+
+\begin{frame}[containsverbatim]
+
+\begin{block}{Console, Terminal (Win, Linux, OSX) - Commandes de base 2/2}
+\begin{lstlisting}
+# Set "Some text" in fileName (Delete, Create before)
+$ echo Some text > fileName
+# Append "Some text" in fileName (Create before)
+$ echo Some text >> fileName
+$ vi fileName      # Edit fileName
+$ notepad fileName # Idem (Win)
+$ ls               # list current directory content
+$ dir              # Idem (Win)
+$ ls -la           # Full info and all
+\end{lstlisting}
+\end{block}
+\end{frame}
+
+
+\subsection{Oh my ?`what? !}
+\begin{frame}[containsverbatim]
+
+\begin{block}{Pour avoir un superbe terminal !}
+\centering
+Suivre ce lien : \faThumbsUp\hspace{0.25cm}
+\textcolor{blue}{\textbf{\underline{\href{https://ohmyposh.dev/}{Oh my posh !}}}}\hspace{0.25cm}\faThumbsUp
+
+\textcolor{blue}{\textbf{\underline{\href{https://ohmyposh.dev/docs/installation/windows}{Installation sous Windows}}}}
+\end{block}
+
+\begin{block}{Pour avoir un  autre superbe terminal !}
+\centering
+Suivre ce lien :
+\textcolor{blue}{\textbf{\underline{\href{https://github.com/ohmybash/oh-my-bash}{Oh my bash !}}}}
+
+\justifying
+\textbf{\underline{Installation :}}
+\begin{lstlisting}
+$ bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
+\end{lstlisting}
+\textbf{\underline{Désinstallation :}}
+\begin{lstlisting}
+$ uninstall_oh_my_bash
+\end{lstlisting}
+Modification du thème et des plugins du Terminal alors possible
+\end{block}
+
+\centering
+Encore une alternative : \textcolor{blue}{\textbf{\underline{\href{https://ohmyz.sh/}{Oh my zsh !}}}}
+
+
+\end{frame}
+
+\subsection{Applications utiles}
+\begin{frame}[containsverbatim]
+
+\center{
+        \includegraphics[scale=0.25]{images/sourcetree.jpg}
+        \includegraphics[scale=0.5]{images/githubDesktop.png}
+        \includegraphics[scale=0.095]{images/gitkrkaen.png}
+        \captionof{figure}{Logiciels SourceTree, GitHub et GitKraken Desktop}}
+
+Trois outils graphiques libres et très utiles
+
+\end{frame}
+
+\subsection{Créer un dépot Github à partir d'un dépot local}
+\begin{frame}[fragile]
+\begin{alertblock}{Contexte}
+\centering
+J'ai des fichiers sur mon ordi que je souhaite gérer sur GitHub
+\end{alertblock}
+
+\begin{block}{Solution}
+\begin{enumerate}
+\item Créer le dépôt local si pas déjà fait
+\item Créer le dépôt distant sur GitHub \textbf{\underline{VIDE}} (évite les erreurs) :
+	\begin{itemize}
+	\item Pas de fichier README.md, .gitignore, licence etc.
+	\item Récupérer l'URL du dépôt distant
+	\end{itemize}
+\item Ajouter cet URL en tant que dépôt distant
+\item Pousser la branche principale sur le dépôt distant
+\end{enumerate}
+\end{block}
+
+\begin{lstlisting} 
+$ git init
+$ git add ...
+$ git commit ...
+$ git remote add origin REMOTE-URL
+$ git remote -v # Check URL has been added
+$ git push -u origin main
+\end{lstlisting}
+
+\end{frame}
+
+\subsection{Lecture de la sortie d'un diff}
+\begin{frame}[fragile]
+\center{
+\begin{lstlisting}
+$ git diff 7e46066..3a78b4a # Changes between commits
+\end{lstlisting}
+\includegraphics[scale=0.34]{images/diffOutput.png}
+-479,7 : 7 lignes \textbf{\underline{à partir de}} la 479 dans le commit 7e46066\\
++484,7 : 7 lignes \textbf{\underline{à partir de}} la 484 dans le commit 3a78b4a
+
+}
+\end{frame}
+
+\begin{frame}[fragile]
+\center{
+\begin{lstlisting}
+# Changes between workspace and stage
+$ git diff
+# Changes between workspace + stage and last commit
+$ git diff HEAD
+\end{lstlisting}
+\includegraphics[scale=0.45]{images/gitdiff2.png}
+Les index présents en entête de la sortie d'un diff sont des identifiants internes à git, pas des numéros de commits !
+
+}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{alertblock}{Comparaison de fichiers entre dépôts distant et local}
+\begin{lstlisting}
+# - Workspace and stage diffs are ignored -
+# Without git fetch, changes between origin and local
+# repos won't be synchronised and diff will be blind.
+# Use git branch -a to list local and "remote local"
+# branches. e.g. : branchName and 
+# remotes/origin/branchName 
+# In order to update "remote local" branches -> 
+$ git fetch
+# Changes between main branches : local branch main 
+# and "remote local" branch remotes/origin/main ->
+$ git diff main origin/main 
+# Changes in path/tofile between origin
+# and local repos in main branches ->
+$ git diff origin/main:path/tofile main:path/tofile
+$ ...
+$ git merge origin/main
+\end{lstlisting}
+\end{alertblock}
+\end{frame}
+
+\subsection{Lecture de la sortie d'un pull}
+\begin{frame}
+\center{
+\includegraphics[width=11cm,height=6cm]{images/pullOutput.png}
+\small
+De nouveaux fichiers ajoutés en mode normal (100644)\\
+343 changements (ajouts et suppressions)\\
+Beaucoup de changements dans presentation.tex\\
+Il existe d'autres modes : e.g. 100755 et 120000
+
+}
+\end{frame}
+
+\subsection{Une longue ligne de commande !}
+\begin{frame}[fragile]
+\centering
+\includegraphics[scale=0.625]{images/prettyLog.png}
+
+\begin{lstlisting}[basicstyle=\tiny]
+$git log --graph --decorate --abbrev-commit --all --pretty=oneline
+\end{lstlisting}
+
+\textbf{\textcolor{red}{Un superbe graphe de commits dans la console \smiley !}}
+
+\end{frame}
+
+\subsection{Les accroches - Hooks}
+\begin{frame}[fragile]
+
+\centering
+\includegraphics[scale=0.25]{images/git-hooks.png}
+
+\textcolor{blue}{\textbf{\underline{\href{https://delicious-insights.com/fr/articles-et-tutos/git-hooks/}{Documentation Hooks sur Delicious Insights}}}}
+
+
+\textcolor{blue}{\textbf{\underline{\href{https://git-scm.com/book/ms/v2/Customizing-Git-Git-Hooks}{Documentation Hooks sur Git}}}}
+
+\end{frame}
+
+\subsection{Les alias}
+\begin{frame}[fragile]
+\centering
+\includegraphics[scale=0.35]{images/gitAlias.png}
+
+\textcolor{blue}{\textbf{\underline{\href{https://git-scm.com/book/fr/v2/Les-bases-de-Git-Les-alias-Git}{Documentation Alias sur Git}}}}
+
+\begin{alertblock}{Les alias en pratique}
+\begin{lstlisting}
+# Creating an alias to get  a
+# graph of commits in console
+$ git config --global alias.lg 'log --graph --decorate --abbrev-commit --all --pretty=oneline'
+$ git lg
+\end{lstlisting}
+\end{alertblock}
+
+\end{frame}
+
+\subsection{Cueillons des cerises !}
+\begin{frame}[fragile]
+\centering
+\includegraphics[scale=0.6]{images/cherryPicks.png}
+
+\textcolor{blue}{\textbf{\underline{\href{https://delicious-insights.com/fr/video/git-cherry-pick-ou-comment-copier-coller-des-commits/}{"Cherry-pick" sur Delicious Insights}}}}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{alertblock}{Cherry-pick en pratique}
+\justifying
+Une bonne pratique consiste à créer une branche de report.
+La Gestion de conflits/fusions est possibles.
+L'option -x permet d'écrire l'ID du commit initial dans le commit final ("cherry picked from commit commitID").
+\begin{lstlisting}
+$ git switch rBranch # Branch which will receive picks
+# Create and switch to a report branch from rBranch
+$ git switch -c rBranchReport 
+$ git cherry-pick -x commitID1 # Pick oldest commit
+$ git cherry-pick -x commitID2 # Pick next commit
+$ git cherry-pick -x commitID3 # Pick next commit
+$ # etc ... Manage possible conficts etc...
+$ git switch rBranch # Switch to rBranch
+$ git merge rBranchReport # Report rBranchReport
+$ git branch -d rBranchReport # Delete rBranchReport
+\end{lstlisting}
+\end{alertblock}
+
+\end{frame}
+
+\subsection{Pour finir !}
+
+\begin{frame}[c]
+\tiny
+
+\begin{minipage}{0.5\linewidth}
+\centering
+\includegraphics[scale=0.1]{images/shortsDeliciousInsights.png} \\
+\textcolor{blue}{\textbf{\underline{\href{https://www.youtube.com/@DeliciousInsights/shorts}{Shorts Git (sur Delicious Insights)}}}}
+\end{minipage}\hfill
+\begin{minipage}{0.5\linewidth}
+\centering
+\includegraphics[scale=0.3]{images/HEAD.png} \\
+\textcolor{blue}{\textbf{\underline{\href{https://stackoverflow.com/questions/2221658/whats-the-difference-between-head-and-head-in-git}{les formes de HEAD expliquées sur StackOverflow}}}}
+\end{minipage}
+\vfill
+\begin{minipage}{0.5\linewidth}
+\centering
+\includegraphics[scale=0.3]{images/gitIgnore.jpg} \\
+\textcolor{blue}{\textbf{\underline{\href{https://www.youtube.com/watch?v=gkzBzBomYyI}{"Ignorer des fichiers" (sur Delicious Insights)}}}}
+\end{minipage}\hfill
+\begin{minipage}{0.5\linewidth}
+\centering
+\includegraphics[scale=0.1]{images/remise.png} \\
+\textcolor{blue}{\textbf{\underline{\href{https://www.youtube.com/watch?v=YXqKG2Tc-Pg}{"La remise" (sur Delicious Insights)}}}}
+\end{minipage}
+\end{frame}
+
+\end{document}
