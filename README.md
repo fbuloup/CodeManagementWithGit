@@ -3,6 +3,7 @@
 Following the links below, you will find the outline content and projects descriptions :
 
 * <a id="raw-url" href="https://raw.githubusercontent.com/fbuloup/CodeManagementWithGit/main/presentation.pdf">Outline</a>
+* <a id="raw-url" href="https://raw.githubusercontent.com/fbuloup/CodeManagementWithGit/main/presentation_Ext.pdf">Outline - Further reading</a>
 * <a id="raw-url" href="https://raw.githubusercontent.com/fbuloup/CodeManagementWithGit/main/projets.pdf">Projects</a>
 * <a id="raw-url" href="https://raw.githubusercontent.com/fbuloup/CodeManagementWithGit/main/comparaison.pdf">Comparison of project collaboration tools</a>
 
