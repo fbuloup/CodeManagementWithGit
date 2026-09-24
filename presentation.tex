@@ -176,7 +176,17 @@ Sur la base d'un Arduino Uno R4 Wifi avec :
 
 \subsection{Installation de git en local : commandes de base}
 \begin{frame}
-\begin{exampleblock}{Exercice \Roman{exampleBlockCounter} - Étapes 1, 2, 3 \& 4 du projet}\stepcounter{exampleBlockCounter} 
+\begin{exampleblock}{[Projet] Step 1 - Synchronisation 1}
+\begin{itemize}
+\item Attendre la réception d'un caractère spécial pour démarrer la boucle loop() de l'Arduino
+\item Ce step comportera également la configuration de la liaison série entre le PC et l'Arduino à 1Mbits/s, 8 bits de données, pas de parité et 1 bit de stop
+\item Vous pourriez utiliser la LED interne (LED\_BUILTIN) pour vérifier que vous êtes bien entré dans la boucle
+\end{itemize}
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}
+\begin{exampleblock}{[GIT] Exercice \Roman{exampleBlockCounter} - Initialisation du dépôt local}\stepcounter{exampleBlockCounter} 
 \begin{enumerate}
     \item Installer Git en suivant le lien suivant : \textcolor{blue}{\textbf{\underline{\href{https://git-scm.com}{Git - SCM}}}}
     \center{
@@ -187,15 +197,29 @@ Sur la base d'un Arduino Uno R4 Wifi avec :
 \begin{enumerate}
 	\setcounter{enumi}{1}
     \item Initialiser votre dossier dans git : commande "git init"
-    \item Ajouter les fichiers : commande "git add"
+    \item Ajouter les fichiers à l'index : commande "git add"
     \item Archiver cette première étape : commande "git commit"
-    \item Continuer pour archiver l'étape 2, 3 \& 4 du projet 
 \end{enumerate}
-
 \end{exampleblock}
 \end{frame}
 
-\subsection{Concepts fondamentaux}
+\begin{frame}
+\begin{exampleblock}{[PROJET] Step 2 - Synchronisation 2}
+\begin{itemize}
+\item Dans la boucle loop(), redémarrer l'Arduino dès réception d'un caractère spécial (Software reset)
+\item Le redémarrage aura lieu après 10 secondes environ et sera initié côté PC
+\end{itemize}
+\end{exampleblock}
+
+\begin{exampleblock}{[GIT] Exercice \Roman{exampleBlockCounter} - Step 2 du projet}\stepcounter{exampleBlockCounter} 
+\begin{enumerate}
+    \item Ajouter les fichiers à l'index : commande "git add"
+    \item Archiver cette étape : commande "git commit"
+    \item Visualisez l'historique avec "git log" 
+\end{enumerate}
+\end{exampleblock}
+\end{frame}
+
 \begin{frame}
 \begin{block}{État initial après le premier commit local}
 \centering
@@ -211,13 +235,23 @@ Sur la base d'un Arduino Uno R4 Wifi avec :
         {main}          % target
 \end{tikzpicture}
 \begin{itemize}
-	\item \textbf{ad6c0bb} est l'ID du commit (l'ID complet est un SHA1)
-	\item \textbf{main} est une référence au dernier commit de la branche qui porte le même nom
-	\item On peut avoir plusieurs branches et donc plusieurs références (\textbf{main}, \textbf{dev}, \textbf{feature1} etc.)
+	\item \textbf{ad6c0bb} est l'ID du \textbf{commit} (l'ID complet est un SHA1)
+	\item \textbf{main} (ou \textbf{master}) est une \textbf{référence} au commit
+	\item \textbf{HEAD} est une autre référence : celle de la "tête de lecture"
 \end{itemize}
-
-
 \end{block}
+\end{frame}
+
+\begin{frame}
+\begin{alertblock}{Heads}
+\justifying
+A head is simply a reference to a commit object. Each head has a name. By default, there is a head in every repository called master (or main). A repository can contain any number of heads. At any given time, one head is selected as the “current head.” This head is aliased to HEAD, always in capitals.
+
+Note this difference: a “head” (lowercase) refers to any one of the named heads in the repository; “HEAD” (uppercase) refers exclusively to the currently active head. This distinction is used frequently in Git documentation.
+\end{alertblock}
+\centering
+\textcolor{blue}{
+\textbf{\underline{\href{https://www.cduan.com/technical/git/git-1.shtml\#heads}{Git - Heads}}}}
 \end{frame}
 
 \begin{frame}
@@ -235,23 +269,244 @@ Sur la base d'un Arduino Uno R4 Wifi avec :
         {main}  
 \end{tikzpicture}
 \begin{itemize}
-	\item \textbf{main} est par convention un nom de branche de production (branche principale)
+	\item Il y a maintenant deux \textbf{commits}
+	\item La \textbf{référence main} pointera toujours sur le dernier \textbf{commit}
+	\item On voit apparaitre une \textbf{branche} qui comporte ces deux \textbf{commits}
+	\item Cette \textbf{branche} porte le même nom que la \textbf{référence} qui pointe sur son dernier \textbf{commit} : \textbf{branche main}
+	\item La nom \textbf{main} est par convention utilisé pour la \textbf{branche} de production, la \textbf{branche} principale
 	\item On peut aussi trouver \textbf{master} à la place de \textbf{main} mais de moins en moins
 \end{itemize}
 \end{block}
 \end{frame}
 
 \begin{frame}
-\begin{alertblock}{Heads}
-\justifying
-A head is simply a reference to a commit object. Each head has a name. By default, there is a head in every repository called master (or main). A repository can contain any number of heads. At any given time, one head is selected as the “current head.” This head is aliased to HEAD, always in capitals.
+\begin{exampleblock}{[Projet] Step 3 - Comptage temporel}
+\begin{itemize}
+\item Mettre en place un système de comptage et de réinitialisation du temps en µs dans l'arduino
+\item La réinitialisation aura lieu à chaque redémarrage de l'Arduino
+\item Vous pourrez utiliser les fonctions Serial.println() et delay() pour vérifier votre code
+\end{itemize}
+\end{exampleblock}
 
-Note this difference: a “head” (lowercase) refers to any one of the named heads in the repository; “HEAD” (uppercase) refers exclusively to the currently active head. This distinction is used frequently in Git documentation.
-\end{alertblock}
-\centering
-\textcolor{blue}{
-\textbf{\underline{\href{https://www.cduan.com/technical/git/git-1.shtml\#heads}{Git - Heads}}}}
+\begin{exampleblock}{[GIT] Exercice \Roman{exampleBlockCounter} - Step 3 du projet}\stepcounter{exampleBlockCounter} 
+\begin{enumerate}
+    \item Ajouter les fichiers à l'index : commande "git add"
+    \item Archiver cette.
+     étape : commande "git commit"
+     \item Visualisez le résumé de l'historique avec "git log -{}-oneline" 
+\end{enumerate}
+\end{exampleblock}
 \end{frame}
+
+\begin{frame}
+\begin{block}{État après le troisième commit local}
+\centering
+\begin{tikzpicture}
+	\gitDAG[grow right sep = 2em]{ad6c0bb -- 55e023d -- 84df6e0};
+    \gitremotebranch
+    	[main]    % node name
+    	{main} % node text
+        {right=of 84df6e0}    % node placement
+        {84df6e0}             % target
+     \gitHEAD
+        {above=of main} % node placement
+        {main}  
+\end{tikzpicture}
+\begin{itemize}
+	\item La \textbf{branche main} comporte maintenant un \textbf{commit} supplémentaire
+	\item La \textbf{référence main} pointe donc toujours sur le dernier \textbf{commit} de sa \textbf{branche}, on ne peut pas la déplacer
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{exampleblock}{[Projet] Step 4 - Transmission du comptage temporel}
+\begin{itemize}
+\item Transmettre ce comptage de temps de l'Arduino au PC
+\item Vous utiliserez les fonctions sprintf() et Serial.println()
+\item Supprimez les sorties consoles python qui prennent du temps
+\item Supprimez les delay() côté Arduino si utilisés
+\item Utilisez la commande flush du port série (Arduino et Python)
+\item Vous accumulerez les valeurs temporelles dans un tableau times[] en secondes
+\end{itemize}
+\end{exampleblock}
+
+\begin{exampleblock}{[GIT] Exercice \Roman{exampleBlockCounter} - Step 4 du projet}\stepcounter{exampleBlockCounter} 
+\begin{enumerate}
+    \item Ajouter les fichiers à l'index : commande "git add"
+    \item Archiver cette.
+     étape : commande "git commit"
+     \item Visualisez le résumé de l'historique avec "git log -{}-oneline" 
+\end{enumerate}
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}
+\begin{block}{État après le quatrième commit local}
+\centering
+\begin{tikzpicture}
+	\gitDAG[grow right sep = 2em]{ad6c0 -- 55e02 -- 84df6 -- 7841f};
+    \gitremotebranch
+    	[main]    % node name
+    	{main} % node text
+        {right=of 7841f}    % node placement
+        {7841f}             % target
+     \gitHEAD
+        {above=of main} % node placement
+        {main}  
+\end{tikzpicture}
+\begin{itemize}
+	\item La \textbf{branche main} comporte un autre \textbf{commit}
+	\item La \textbf{référence main} pointe toujours sur le dernier \textbf{commit}
+	\item La \textbf{référence HEAD}, la "tête de lecture", peut être déplacée pour explorer l'historique du dépôt
+\end{itemize}
+\end{block}
+\begin{exampleblock}{[GIT] Exercice \Roman{exampleBlockCounter} - Step 4 du projet : se déplacer dans l'historique}\stepcounter{exampleBlockCounter} 
+\begin{enumerate}
+    \item Utiliser la commande "git checkout 55e02" pour revenir à l'étade 2 du projet
+    \item Utiliser la commande "git checkout main" pour revenir en tête de la branche main
+\end{enumerate}
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}
+\begin{block}{État après la commande "git checkout 55e02"}
+\centering
+\begin{tikzpicture}
+	\gitDAG[grow right sep = 2em]{ad6c0 -- 55e02 -- 84df6 -- 7841f};
+    \gitremotebranch
+    	[main]    % node name
+    	{main} % node text
+        {right=of 7841f}    % node placement
+        {7841f}             % target
+     \gitHEAD
+        {above=of 55e02} % node placement
+        {55e02} 			
+\end{tikzpicture}
+\begin{itemize}
+	\item La \textbf{référence HEAD} est déplacée au deuxième \textbf{commit}
+	\item Les fichiers archivés se retrouvent alors dans l'état où ils étaient lors de la deuxième étape du projet
+	\item On peut inspecter et même faire des changements
+	\item Ils seront perdus si on déplace de nouveau \textbf{HEAD}
+	\item Pour prendre en compte les changements, il faut créer une nouvelle \textbf{branche} et y archiver (\textbf{commit}) ces changements 
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{block}{État après la commande "git checkout main"}
+\centering
+\begin{tikzpicture}
+	\gitDAG[grow right sep = 2em]{ad6c0 -- 55e02 -- 84df6 -- 7841f};
+    \gitremotebranch
+    	[main]    % node name
+    	{main} % node text
+        {right=of 7841f}    % node placement
+        {7841f}             % target
+     \gitHEAD
+        {above=of main} % node placement
+        {main} 			
+\end{tikzpicture}
+\begin{itemize}
+	\item La \textbf{référence HEAD} pointe de nouveau sur le dernier \textbf{commit} de la \textbf{branche main}
+	\item Les fichiers archivés se retrouvent alors dans l'état le plus récent de la \textbf{branche main} et on peut continuer le travail 
+\end{itemize}
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+
+\begin{exampleblock}{[Projet] Step 5 - Transmission de la valeur courante du capteur}
+\begin{itemize}
+\item Lire la valeur brute du capteur (cf. doc Projets)
+\item Transmettre la valeur au PC
+\item Vous utiliserez les mêmes fonctions sprintf() et Serial.println()
+\end{itemize}
+\end{exampleblock}
+
+\justifying
+\textcolor{red}{\textbf{Interruption inattendue : vous n'avez pas terminé cette étape et vous devez faire des modifications qui doivent être utilisées immédiatement sur le poste expérimental : changer les caractères 'r' et 's' par 'd' et 'a' pour le démarrage et l'arrêt d'un essai ! Vous ne voulez pas perdre les modifs en cours mais vous ne pouvez pas les utiliser immédiatement puisque vous n'avez pas terminé l'étape 5 ! ...}}
+\end{frame}
+
+\begin{frame}
+\justifying
+Une bonne pratique de git pourrait se résumer ainsi : "Il est souvent très utile, surtout quand un code est en production, d'utiliser une nouvelle branche lorsqu'on le fait évoluer !". Dans notre contexte, un code en production peut se traduire par "un code en cours d'utilisation dans le cadre d'une expérience, que l'on soit en phase d'acquisition ou de traitement des données". 
+\vspace{1cm}
+
+\centering
+Vous allez suivre cette bonne pratique !
+\end{frame}
+
+\begin{frame}
+
+\begin{exampleblock}{[GIT] Exercice \Roman{exampleBlockCounter} - Step 5 du projet : création d'une branche}
+\stepcounter{exampleBlockCounter}
+\begin{enumerate}
+    \item Créez une branche nommée "step5"
+    \item Archivez les modifs en cours dans cette branche
+    \item Retournez dans la branche main et faites les changements de caractères
+    \item Archivez ces changements et utilisez-les en poste !
+    \item Retournez dans la branche "step5" et terminez l'étape
+\end{enumerate}
+\end{exampleblock}
+
+\begin{exampleblock}{[GIT] Exercice \Roman{exampleBlockCounter} -  Step 5 du projet : fusion de branches}
+\stepcounter{exampleBlockCounter}
+Pour appliquer les améliorations de l'étape 5 dans la branche principale (main) :
+\begin{enumerate}
+    \item Vous retournez dans la branche main
+    \item Vous fusionnez la branche "step5" dans cette branche
+\end{enumerate}
+\end{exampleblock}
+
+\end{frame}
+
+\begin{frame}{Petit résumé intermédiaire}
+
+\begin{alertblock}{Concepts importants à retenir}
+\begin{itemize}
+\item Branches
+\item Commits
+\item Heads (références, pointeurs)
+\item Toute branche a son pointeur de même nom qui référence toujours le dernier commit de la branche
+\item HEAD est le seul pointeur qui peut bouger. C'est à partir de lui que sera créé le prochain commit.
+\item La fusion de branches peut être une opération délicate si de trop nombreux changements ont été effectués aux mêmes endroits dans les deux branches
+\end{itemize}
+\end{alertblock}
+
+\end{frame}
+
+\begin{frame}[containsverbatim]{Petit résumé intermédiaire}
+\begin{alertblock}{Quelques Commandes : status, log, branch et switch}
+    \begin{lstlisting}
+$ git status             # Git status
+$ git log                # Print commits
+$ git log --oneline      # Print abbrev-commits
+$ git branch branchName  # Create branch branchName
+$ git switch branchName  # Move HEAD to branchName
+$ git switch -c bName    # Create and switch to bName
+$ git merge bName        # Merge bName in current branch
+    \end{lstlisting}
+\end{alertblock}
+
+\begin{alertblock}{Il existe un répertoire .git}
+    \begin{itemize}
+        \item Il contient la base de donnée locale du dépôt : dépôt local
+        \item Il contient un fichier de configuration du dépôt
+    \end{itemize}
+\end{alertblock}
+\end{frame}
+
+\begin{frame}[containsverbatim]{Petit résumé intermédiaire}
+\begin{alertblock}{I need help !}
+    \begin{lstlisting}
+$ git commit --help # open html or man page on "commit"
+$ git remote -h     # Quick "remote" help in console
+    \end{lstlisting}
+\end{alertblock}
+\end{frame}
+
 
 \subsection{Les zones de Git}
 \begin{frame}[containsverbatim]
@@ -431,93 +686,6 @@ Taille max. de 5GB sur Github (AWS Amazon S3)
     \end{block}
     \centering
     \textcolor{red}{\textbf{L'apprentissage en ligne de commande est le plus efficace !}}
-\end{frame}
-
-\subsection{Le concept de branche}
-\begin{frame}
-\justifying
-Vous avez surpris une conversation entre utilisateurs de git qui pourrait se résumer ainsi : "Il est souvent très utile, surtout quand un code est en production, d'utiliser une nouvelle branche lorsqu'on le fait évoluer !". Dans notre contexte, un code en production peut se traduire par "un code en cours d'utilisation dans le cadre d'une expérience, que l'on soit en phase d'acquisition ou de traitement des données". 
-\vspace{1cm}
-
-\centering
-Vous allez suivre ce conseil !
-\end{frame}
-
-\begin{frame}
-
-\begin{exampleblock}{Exercice \Roman{exampleBlockCounter} - Création d'une branche et étape 5 du projet}
-\begin{enumerate}
-    \item Créer une branche nommée "step5"
-    \item Implémenter cette étape dans cette branche
-\end{enumerate}
-\end{exampleblock}
-\justifying
-\textcolor{red}{\textbf{Interruption inattendue : votre boss vous dit de changer les caractères 'r' et 's' par 'd' et 'a' pour le démarrage et l'arrêt d'un essai. Ce changement doit être opérationnel dès que possible ! (vous pourriez imaginer autre chose de plus utile !)}}
-\begin{exampleblock}{Exercice \Roman{exampleBlockCounter} - Création d'une branche et étape 5 du projet}\stepcounter{exampleBlockCounter}
-\begin{enumerate}
-	\setcounter{enumi}{2}
-    \item Vous retournez dans la branche main et faites les changements
-    \item Vous archivez ces changements et les utilisez en production !
-    \item Vous retournez dans la branche "step3" et terminez l'étape
-\end{enumerate}
-\end{exampleblock}
-\end{frame}
-
-\begin{frame}
-
-\begin{exampleblock}{Exercice \Roman{exampleBlockCounter} - Fusion de branches}
-\stepcounter{exampleBlockCounter}
-Pour appliquer les améliorations de l'étape 5 dans la branche principale (main) :
-\begin{enumerate}
-    \item Vous retournez dans la branche main
-    \item Vous fusionnez la branche de l'étape 3 dans cette branche
-\end{enumerate}
-\end{exampleblock}
-\end{frame}
-
-\begin{frame}
-
-\begin{alertblock}{Concepts importants à retenir}
-\begin{itemize}
-\item Branches
-\item Commits
-\item Heads (références, pointeurs)
-\item Toute branche a son pointeur de même nom qui référence toujours le dernier commit de la branche
-\item HEAD est le seul pointeur qui peut bouger. C'est à partir de lui que sera créé le prochain commit.
-\item La fusion de branches peut être une opération délicate si de trop nombreux changements ont été effectués aux mêmes endroits dans les deux branches
-\end{itemize}
-\end{alertblock}
-
-\end{frame}
-
-
-\begin{frame}[containsverbatim]{Petit résumé intermédiaire}
-\begin{alertblock}{Quelques Commandes : status, log, branch et switch}
-    \begin{lstlisting}
-$ git status             # Git status
-$ git log                # Print commits
-$ git log --oneline      # Print abbrev-commits
-$ git branch branchName  # Create branch branchName
-$ git switch branchName  # Move HEAD to branchName
-$ git switch -c bName    # Create and switch to bName
-    \end{lstlisting}
-\end{alertblock}
-
-\begin{alertblock}{Il existe un répertoire .git}
-    \begin{itemize}
-        \item Il contient la base de donnée locale du dépôt : dépôt local
-        \item Il contient un fichier de configuration du dépôt
-    \end{itemize}
-\end{alertblock}
-\end{frame}
-
-\begin{frame}[containsverbatim]{Petit résumé intermédiaire}
-\begin{alertblock}{I need help !}
-    \begin{lstlisting}
-$ git commit help # open html or man page on "commit"
-$ git remote -h   # Quick "remote" help in console
-    \end{lstlisting}
-\end{alertblock}
 \end{frame}
 
 \end{document}
